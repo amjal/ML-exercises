@@ -1,0 +1,18 @@
+1. Machine learning researchers often test their algorithms using publicly available
+benchmark domains. A large repository of such domains can be found at the
+following address: www.ics.uci.edu/~mlearn/MLRepository.html. Take a look at
+these data and see how they differ in the numbers of attributes, types of attributes,
+sizes and so on.
+
+2. Write a computer program that will use the Bayes formula to calculate the class
+probabilities in a domain where all attributes are discrete. Apply this program to
+our “pies” domain.
+
+3. For the case of continuous attributes, write a computer program that accepts the
+training examples in the form of a table such as the one in Exercise 3 above.
+Based on these, the program approximates the pdf s, and then uses them to
+determine the class labels of future examples.
+4. Apply this program to a few benchmark domains from the UCI repository
+(choose from those where all attributes are continuous) and observe that the
+program succeeds in some domains better than in others.
+
