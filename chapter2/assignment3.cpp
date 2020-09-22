@@ -5,12 +5,7 @@
 
 int example_num = 0;
 
-struct example{
-	std::string class_label;
-	std::map<std::string, std::string> attribute_set;
-};
-
-std::map<std::string, std::vector<example>> example_set;
+std::map<std::string, std::map<std::string, float[2]>> example_set;
 
 example classify(example ex){
 	float max_p = 0;
@@ -69,8 +64,6 @@ int main(){
 		if (example_set.find(cl) == example_set.end()){//This means the class doesn't yet exist in our example set
 			example_set[cl] = std::vector<example>();
 		}
-		example temp;
-		temp.class_label = cl;
 		printf("Now enter attribute values of this example:\n");
 		while(true){
 			std::string input;
