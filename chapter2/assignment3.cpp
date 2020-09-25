@@ -2,48 +2,56 @@
 #include<string>
 #include<map>
 #include<vector>
+#include<math.h>
 
 int example_num = 0;
+float u_min = 100;
+float u_max = 0;
 
-std::map<std::string, std::map<std::string, float[2]>> example_set;
+// {class label -> {attribute -> attribute values}}
+std::map<std::string, std::map<std::string, std::vector<float>>> example_set;
+std::map<std::string, int> class_num;
 
-example classify(example ex){
+std::string classify(std::map <std::string, float> new_example){
 	float max_p = 0;
+	std::string label;
 	//pci denotes P(Ci)
 	float pci;
 	//pxic denotes P(X | Ci)
 	float pxci = 1;
+	//obtain iterator for example set
+	std::map<std::string, std::map<std::string, std::vector<float>>>:: iterator class_it;
 	//Iterate through all different classes of examples
-	for(std::map<std::string, std::vector<example>>::iterator class_it = example_set.begin() ; class_it != example_set.end(); class_it++){
+	for(class_it = example_set.begin() ; class_it != example_set.end(); class_it++){
 		//For each class calculate the probability of that class
-		pci = float((class_it->second).size()) / float(example_num);
+		pci = float(class_num[class_it->first])/ float(example_num);
 		pxci = 1;
-		//Iterate through all attributes of the ex example
-		for(std::map<std::string, std::string>::iterator att_it = ex.attribute_set.begin() ; att_it != ex.attribute_set.end(); att_it ++){
-			float att_num = 0;
-			float att_match = 0;
-			//Now iterate through all examples belonging to the same class calculating the probability P(Xi|Ci)
-			for(int i=0 ; i< (class_it->second).size() ; i++){
-				//First check if the example in vector has this particular attribute of ex
-				if((class_it->second)[i].attribute_set.count(att_it->first)){
-					att_num ++;
-					if((class_it->second)[i].attribute_set[att_it->first] == att_it->second){
-						att_match ++;
-					}
+		//obtain iterator of example
+		std::map<std::string, float>::iterator example_it;
+		//Iterate through all attributes of the new example
+		for(example_it = new_example.begin() ; example_it != example.end(); example_it ++){
+			float pxi = 0;
+			// Check if the current attribute exists in the class list
+			if(class_it->second.count(example_it->first)){
+				//Now calculate the superposition pdf of the current attribute
+				for(int i =0; i < class_it->second[example_it->first].size(); i ++){
+					pxi += exp(-(example_it->second - class_it->second[example_it->first][i])/2.0);
 				}
 			}
-			// This is naive bayesian assumption in which all attributes are assumed to be independent
-			pxci *= (att_match/att_num);
+			//TODO define sigma
+			pxi /= example_num*sigma*sqrt(2*M_PI);
+			// This is the naive Bayesian assumption
+			pxci *= pxi;
 		}
 		pxci *= pci;
 		std::cout<<class_it->first<<": "<<pxci<<std::endl;
 		//Find which class maximaizes P(X|Ci)*P(Ci)
 		if(pxci > max_p){
 			max_p = pxci;
-			ex.class_label = class_it->first;
+			label = class_it -> first;
 		}
 	}
-	return ex;
+	return label;
 }
 		
 int main(){
@@ -57,13 +65,15 @@ int main(){
 		std::getline(std::cin, cl);
 		if (cl == "exit") return 0;
 		if (cl == "done") break;
-		// number of examples will come handy in calculating P(Ci)
-		example_num ++;
 		//cl contains the class this example is labeled with
 		//Add the example to the corresponding class label. If class label doesn't exist add it.
 		if (example_set.find(cl) == example_set.end()){//This means the class doesn't yet exist in our example set
-			example_set[cl] = std::vector<example>();
+			example_set[cl] = std::map<std::string, float*>();
+			class_num[cl] = 0;
 		}
+		// number of examples will come handy in calculating P(Ci) and normalizing sigma
+		example_num ++;
+		class_num[cl] ++;
 		printf("Now enter attribute values of this example:\n");
 		while(true){
 			std::string input;
@@ -71,22 +81,35 @@ int main(){
 			if(input.length() == 0) break;
 			int space_loc = input.find(' ');
 			std::string attr_name = input.substr(0, space_loc);
-			std::string attr_value = input.substr(space_loc+1 , input.length() - space_loc);
-			temp.attribute_set[attr_name] = attr_value;
+			std::string attr_value = std::stof(input.substr(space_loc+1 , input.length() - space_loc));
+			//If this attribute name doesn't exist in attribute list then add it
+			if(example_set[cl].find(attr_name) == example_set[cl].end())
+				example_set[cl][attr_name] = new float[2];
+			//Calculate the new average using the previous average and the number of examples. index 0 is number
+			//index 1 is previous average 
+			example_set[cl][attr_name][1] = (example_set[cl][attr_name][0]*example_set[cl][attr_name][1] + attr_value)
+			example_set[cl][attr_name][0] ++;
+			example_set[cl][attr_name][1] /= example_set[cl][attr_name][0];
+			// We need to calculate u_max - u_min for sigma
+			if (example_set[cl][attr_name][1] > u_max){
+				u_max = exampe_set[cl][attr_name][1];
+			}
+			else if(example_set[cl][attr_name][1] < u_min){
+				u_min = example_set[cl][attr_name][1];
+			}
 		}
-		example_set[cl].push_back(temp);
 	}
 	printf("Now enter the attribute set for the example you want to label:\n");
-	example ex;
+	std::map <std::string, float> new_example;
 	while(true){
 		std::string input;
 		std::getline(std::cin, input);
 		if(input.length() == 0) break;
 		int space_loc = input.find(' ');
 		std::string attr_name = input.substr(0, space_loc);
-		std::string attr_value = input.substr(space_loc +1, input.length() - space_loc);
-		ex.attribute_set[attr_name] = attr_value;
+		std::string attr_value = std::stof(input.substr(space_loc +1, input.length() - space_loc));
+		new_example[attr_name] = attr_value
 	}
-	classify(ex);
+	classify(new_example);
 	return 0;
 }
