@@ -5,6 +5,7 @@
 #include<math.h>
 
 int example_num = 0;
+float sigma;
 float u_min = 100;
 float u_max = 0;
 
@@ -13,6 +14,7 @@ std::map<std::string, std::map<std::string, std::vector<float>>> example_set;
 std::map<std::string, int> class_num;
 
 std::string classify(std::map <std::string, float> new_example){
+	sigma = (u_max - u_min)/float(example_num);
 	float max_p = 0;
 	std::string label;
 	//pci denotes P(Ci)
@@ -84,18 +86,13 @@ int main(){
 			std::string attr_value = std::stof(input.substr(space_loc+1 , input.length() - space_loc));
 			//If this attribute name doesn't exist in attribute list then add it
 			if(example_set[cl].find(attr_name) == example_set[cl].end())
-				example_set[cl][attr_name] = new float[2];
-			//Calculate the new average using the previous average and the number of examples. index 0 is number
-			//index 1 is previous average 
-			example_set[cl][attr_name][1] = (example_set[cl][attr_name][0]*example_set[cl][attr_name][1] + attr_value)
-			example_set[cl][attr_name][0] ++;
-			example_set[cl][attr_name][1] /= example_set[cl][attr_name][0];
+				example_set[cl][attr_name] = std::vector<float>();
 			// We need to calculate u_max - u_min for sigma
-			if (example_set[cl][attr_name][1] > u_max){
-				u_max = exampe_set[cl][attr_name][1];
+			if (attr_value > u_max){
+				u_max = attr_value;
 			}
-			else if(example_set[cl][attr_name][1] < u_min){
-				u_min = example_set[cl][attr_name][1];
+			else if(attr_value < u_min){
+				u_min = attr_value;
 			}
 		}
 	}
@@ -108,7 +105,7 @@ int main(){
 		int space_loc = input.find(' ');
 		std::string attr_name = input.substr(0, space_loc);
 		std::string attr_value = std::stof(input.substr(space_loc +1, input.length() - space_loc));
-		new_example[attr_name] = attr_value
+		new_example[attr_name] = attr_value;
 	}
 	classify(new_example);
 	return 0;
