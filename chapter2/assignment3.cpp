@@ -11,6 +11,7 @@ float u_max = 0;
 
 // {class label -> {attribute -> attribute values}}
 std::map<std::string, std::map<std::string, std::vector<float>>> example_set;
+// The number of examples for each class is held in a separate map
 std::map<std::string, int> class_num;
 
 std::string classify(std::map <std::string, float> new_example){
@@ -22,16 +23,16 @@ std::string classify(std::map <std::string, float> new_example){
 	//pxic denotes P(X | Ci)
 	float pxci = 1;
 	//obtain iterator for example set
-	std::map<std::string, std::map<std::string, std::vector<float>>>:: iterator class_it;
+	std::map<std::string, std::map<std::string, std::vector<float>>>::iterator class_it;
 	//Iterate through all different classes of examples
-	for(class_it = example_set.begin() ; class_it != example_set.end(); class_it++){
+	for(class_it = example_set.begin(); class_it != example_set.end(); class_it++){
 		//For each class calculate the probability of that class
 		pci = float(class_num[class_it->first])/ float(example_num);
 		pxci = 1;
 		//obtain iterator of example
 		std::map<std::string, float>::iterator example_it;
 		//Iterate through all attributes of the new example
-		for(example_it = new_example.begin() ; example_it != example.end(); example_it ++){
+		for(example_it = new_example.begin() ; example_it != new_example.end(); example_it ++){
 			float pxi = 0;
 			// Check if the current attribute exists in the class list
 			if(class_it->second.count(example_it->first)){
@@ -40,7 +41,6 @@ std::string classify(std::map <std::string, float> new_example){
 					pxi += exp(-(example_it->second - class_it->second[example_it->first][i])/2.0);
 				}
 			}
-			//TODO define sigma
 			pxi /= example_num*sigma*sqrt(2*M_PI);
 			// This is the naive Bayesian assumption
 			pxci *= pxi;
@@ -70,7 +70,7 @@ int main(){
 		//cl contains the class this example is labeled with
 		//Add the example to the corresponding class label. If class label doesn't exist add it.
 		if (example_set.find(cl) == example_set.end()){//This means the class doesn't yet exist in our example set
-			example_set[cl] = std::map<std::string, float*>();
+			example_set[cl] = std::map<std::string, std::vector<float>>();
 			class_num[cl] = 0;
 		}
 		// number of examples will come handy in calculating P(Ci) and normalizing sigma
@@ -83,10 +83,11 @@ int main(){
 			if(input.length() == 0) break;
 			int space_loc = input.find(' ');
 			std::string attr_name = input.substr(0, space_loc);
-			std::string attr_value = std::stof(input.substr(space_loc+1 , input.length() - space_loc));
+			float attr_value = std::stof(input.substr(space_loc+1 , input.length() - space_loc));
 			//If this attribute name doesn't exist in attribute list then add it
 			if(example_set[cl].find(attr_name) == example_set[cl].end())
 				example_set[cl][attr_name] = std::vector<float>();
+			example_set[cl][attr_name].push_back(attr_value);
 			// We need to calculate u_max - u_min for sigma
 			if (attr_value > u_max){
 				u_max = attr_value;
@@ -104,9 +105,9 @@ int main(){
 		if(input.length() == 0) break;
 		int space_loc = input.find(' ');
 		std::string attr_name = input.substr(0, space_loc);
-		std::string attr_value = std::stof(input.substr(space_loc +1, input.length() - space_loc));
+		float attr_value = std::stof(input.substr(space_loc +1, input.length() - space_loc));
 		new_example[attr_name] = attr_value;
 	}
-	classify(new_example);
+	std::cout<<classify(new_example)<<std::endl;
 	return 0;
 }
