@@ -23,7 +23,7 @@ while len(str_in) != 0:
 new_example = pandas.DataFrame(data=new_example, index=[0])
 
 print()
-k = input("Enter k: ")
+k = int(input("Enter k: "))
 
 # Scale the values
 for attrName, attrData in training_set.iteritems():
@@ -50,9 +50,17 @@ training_set = training_set.apply(sub_square, axis=0)
 # This apply function sums all differences and sqrts the result therefore calculating the final distance
 distances['distance'] = training_set.apply(lambda row: row.sum()**(1/2), axis=1)
 
-print(distances)
+# Take the k nearest neighbors
+distances = distances.nlargest(k, ['distance'])
 
-# This apply function calculates the distance of each 
-#for attrName, attrData in training_set.iteritems():
-    #TODO what if the examlpe doesn't contain this attribute
-#    distances['distance'] = (attrData - new_example[attrName]).pow(2)
+d_min = distances['distance'].min()
+d_max = distances['distance'].max()
+
+# Calculate weights 
+# If all distances are equal then all will have unit weight
+if d_min == d_max:
+    distances['distance'] = 1
+else:
+    for i in range(0,k):
+        distances.loc[i,'distance'] = (d_max - distances.loc[i, 'distance'])/(d_max - d_min)
+
