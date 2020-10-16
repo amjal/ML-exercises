@@ -52,6 +52,7 @@ distances['distance'] = training_set.apply(lambda row: row.sum()**(1/2), axis=1)
 
 # Take the k nearest neighbors
 distances = distances.nlargest(k, ['distance'])
+distances = distances.reset_index(drop=True)
 
 d_min = distances['distance'].min()
 d_max = distances['distance'].max()
@@ -64,3 +65,8 @@ else:
     for i in range(0,k):
         distances.loc[i,'distance'] = (d_max - distances.loc[i, 'distance'])/(d_max - d_min)
 
+# Now let's vote to see which label should be assigned to this new example 
+final_frame = distances.groupby(by=['class_label']).sum().reset_index()
+max_class_index = final_frame['distance'].idxmax()
+class_label = final_frame.loc[max_class_index,'class_label']
+print(class_label)
