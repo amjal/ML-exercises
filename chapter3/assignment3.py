@@ -20,12 +20,14 @@ while len(str_in) != 0:
         new_example[attr_val[0]] = attr_val[1]
     str_in = input()
 
+# Convert the new example into a pandas dataframe
 new_example = pandas.DataFrame(data=new_example, index=[0])
 
 print()
 k = int(input("Enter k: "))
 
-# Scale the values
+# Question: Should I normalize the new example too? Or is it just the training set?
+# Iterate columns and scale the values
 for attrName, attrData in training_set.iteritems():
     if attrData.dtype != object:
         #TODO be ware of division be zero
@@ -51,13 +53,13 @@ training_set = training_set.apply(sub_square, axis=0)
 distances['distance'] = training_set.apply(lambda row: row.sum()**(1/2), axis=1)
 
 # Take the k nearest neighbors
-distances = distances.nlargest(k, ['distance'])
+distances = distances.nsmallest(k, ['distance'])
 distances = distances.reset_index(drop=True)
 
 d_min = distances['distance'].min()
 d_max = distances['distance'].max()
 
-# Calculate weights 
+# Calculate voting weights, meaning the one that is really close should have mroe to say about new label
 # If all distances are equal then all will have unit weight
 if d_min == d_max:
     distances['distance'] = 1
