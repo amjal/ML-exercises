@@ -1,0 +1,22 @@
+1. Write a program whose input is the training set, a user-specified value of k, and
+an object, x. The output is the class label of x.
+2. Apply the program implemented in the previous assignment to some of the
+benchmark domains from the UCI repository.5 Always take 40% of the examples
+out and reclassify them with the 1-NN classifier that uses the remaining 60%.
+3. Create a synthetic toy domain consisting of 1000 examples described by a pair
+of attributes, each from the interval [0,1]. In the square defined by these attribute
+values, [0,1] . [0,1], define a geometric figure of your own choice and label all
+examples inside it as positive and all other examples as negative. From this initial
+noise-free data set, create 5 files, each obtained by changing p percent of the class
+labels, using p = {5, 10, 15, 20, 25} (thus obtaining different levels of class-label
+noise).
+Divide each data file into two parts, the first to be reclassified by the k-NN
+classifier that uses the second part. Observe how different values of k result in
+different behaviors under different levels of class-label noise.
+4. Implement the Tomek-link method for the removal of harmful examples. Repeat
+the experiments above for the case where the k-NN classifier uses only examples
+that survived this removal. Compare the results, observing how the removal
+affected the classification behavior of the k-NN classifier for different values of
+k and for different levels of noise.
+
+
