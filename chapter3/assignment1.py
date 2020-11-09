@@ -1,5 +1,19 @@
 import pandas
 
+class Classifier:
+    # This type of constructor (without any additional arguments is called when user interaction is necessary
+    # All examples are stored in domain file. A subset of them is going to be used for training.
+    # The rest of them are going to be classified and labeled.
+    def __init__(self, domain_file, labeled_dataset, unlabeled_dataset):
+        pass
+    
+    def read_dataset(self):
+        pass
+
+    def classify(self):
+        pass 
+
+
 # In this code I am going to assume that attributes are a mixture of continuous and discrete values
 training_set_address = input("Enter the path to training set .csv file: ")
 training_set = pandas.read_csv(training_set_address)
@@ -8,7 +22,6 @@ print("Training set successfully loaded")
 print("Now enter the example you want to classify in the following format:\n \
         <attribute name><space><attribute value><\\n>\n \
 enter an empty line when you're finished\n")
-
 str_in = input()
 new_example = {}
 while len(str_in) != 0:
@@ -30,7 +43,7 @@ k = int(input("Enter k: "))
 # Iterate columns and scale the values
 for attrName, attrData in training_set.iteritems():
     if attrData.dtype != object:
-        #TODO be ware of division be zero
+        #TODO be ware of division by zero
         attrData = (attrData - attrData.min())/(attrData.max() - attrData.min())
 
 
