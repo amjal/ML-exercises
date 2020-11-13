@@ -4,23 +4,23 @@ import matplotlib.pyplot as plt
 
 num_examples = 1000
 # Create an empty pandas dataframe 
-df = pandas.DataFrame(columns=['att1', 'att2', 'label'])
+df = pandas.DataFrame(columns=['att1', 'att2', 'class_label'])
 # Set the random seed so the sequences are reproducible
 numpy.random.seed(1)
 df['att1'] = numpy.random.rand(num_examples)
 df['att2'] = numpy.random.rand(num_examples)
 # The shape that I want to classify the examples based on is a circle centered in (0.5, 0.5) with radius 0.5
-# So examples within this circle are labled + and examples outside it are labeled -
+# So examples within this circle are labled + and examples outside it are class_labeled -
 for row_index, row_data in df.iterrows():
     if (row_data['att1'] - 0.5)**2 + (row_data['att2']-0.5)**2 < 0.25:
-        df.loc[row_index,'label'] = '+'
+        df.loc[row_index,'class_label'] = '+'
     else:
-        df.loc[row_index,'label'] = '-'
+        df.loc[row_index,'class_label'] = '-'
 
 # Visualize the synthesized domain usgin a scatter plot
 colors = numpy.array(range(0,num_examples), dtype=object)
-colors[df['label'] == '+'] = 'r'
-colors[df['label'] == '-'] = 'b'
+colors[df['class_label'] == '+'] = 'r'
+colors[df['class_label'] == '-'] = 'b'
 plt.scatter(df['att1'],df['att2'],c=colors)
 #plt.show()
 
@@ -28,10 +28,10 @@ plt.scatter(df['att1'],df['att2'],c=colors)
 def mutator(row,p):
     random_sample = numpy.random.randint(0,100)
     if random_sample < p:
-        if row['label'] == '+':
-            row['label'] = '-'
+        if row['class_label'] == '+':
+            row['class_label'] = '-'
         else:
-            row['label'] = '+'
+            row['class_label'] = '+'
     return row
 # Now let's add some noise to the data
 # p is explained in question 3 and is the percentage of the examples with changed values 
