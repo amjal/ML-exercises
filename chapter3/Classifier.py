@@ -1,5 +1,9 @@
 import pandas
 
+''' This class takes two labeled datasets as input, uses one as a training set to relabel and 
+    reclassify the other using k-NN (k-nearest neighbors) algorithm with a given k.
+'''
+
 class Classifier:
     # This is our training domain   
     labeled_dataset = pandas.DataFrame([])

@@ -2,6 +2,13 @@ import pandas
 import numpy
 import matplotlib.pyplot as plt
 
+''' This file produces 1000 samples with two attributes each within interval [0,1]
+ Then the samples are labeled according to a geometric shape specifically, a circle with radius 0.5
+ Samples inside this circle are labeled + and samples outside it are labeled -
+ Also uniform or white noise with different percentages is added to the dataset and the results are stored in 
+ csv files for later use
+'''
+
 num_examples = 1000
 # Create an empty pandas dataframe 
 df = pandas.DataFrame(columns=['att1', 'att2', 'class_label'])

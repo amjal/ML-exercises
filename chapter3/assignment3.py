@@ -1,5 +1,5 @@
 # In this code I will try to observe the behavior of k-NN with different k under different levels of noise. 
-# All I have to do is to call the classifier I have written in assignment 1 with different levels of k on noisy data. 
+# All I have to do is to call the classifier in Classifier.py different levels of k on noisy data. 
 from Classifier import Classifier
 import matplotlib.pyplot as plt
 import pandas
@@ -19,7 +19,7 @@ for p in noise_levels:
     classifier = Classifier(training_dataset=training_dataset, example_dataset=example_dataset.copy())
     # Classify the training_dataset
     classified_dataset = classifier.classify_dataset(5);
-    # Visualize the initial and relabeled dataset using a scatter plot to compare the result
+    # Visualize the initial and relabeled dataset using a scatter plot to compare the results
     fig, axs = plt.subplots(2)
     colors = numpy.array(range(0,len(classified_dataset.index)), dtype=object)
     colors[classified_dataset['class_label'] == '+'] = 'r'
