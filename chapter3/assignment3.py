@@ -10,7 +10,7 @@ domain_fraction = 0.6
 
 for p in noise_levels:
     # Read the dataframe
-    df = pandas.read_csv(str(p)+"%_noise.csv")
+    df = pandas.read_csv("datasets/"+str(p)+"%_noise.csv")
     # Split the dataset into two parts. First part is going to be used to train the classifier
     training_dataset = df.iloc[0:int(domain_fraction*len(df.index))]
     # Second part of dataset is going to be used to relabeled and evaluate the performance of the classifier
@@ -31,4 +31,4 @@ for p in noise_levels:
     axs[1].scatter(example_dataset['att1'],example_dataset['att2'],c=colors)
     axs[1].set_title('classified')
     plt.tight_layout()
-    plt.show()
+    plt.savefig("plots/"+str(domain_fraction*100)+"%_trainingset_"+str(p)+"%noise.png")

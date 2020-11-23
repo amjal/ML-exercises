@@ -1,0 +1,8 @@
+att1,att2,att3,att4,class_label
+2,0,1.1,apple,x
+1,0,1.2,orange,y
+2,2,2.3,banana,z
+1,1.5,3.3,cherry,z
+2,-1,0,mango,x
+0,3,1,blueberry,y
+1,1,0,cherry,z

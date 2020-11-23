@@ -45,5 +45,5 @@ def mutator(row,p):
 for p in [5, 10, 15, 20, 25]:
     new_df = df.apply(mutator, axis=1, args=(p,))
     # Write the new data to a file
-    new_df.to_csv(str(p)+"%_noise.csv", index=False)
+    new_df.to_csv("datasets/"+str(p)+"%_noise.csv", index=False)
 
