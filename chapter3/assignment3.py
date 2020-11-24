@@ -22,6 +22,9 @@ for p in noise_levels:
     example_dataset = df.iloc[int(domain_fraction*len(df.index)+1):int(len(df.index))]
     # Instantiate the classifier
     classifier = Classifier(training_dataset=training_dataset, example_dataset=example_dataset.copy())
+
+    '''
+    # This part is for classifying with various neighbor values and seeing the difference
     error_list = [0 for i in range(26)]
     for i in range(1, 26):
         # Classify the training_dataset
@@ -29,16 +32,17 @@ for p in noise_levels:
         # Calculate the error by comparing with reference dataframe
         num_errors = reference_dataset['class_label'].eq(classified_dataset['class_label']).sum()
         error_list[i] = 1 - num_errors/num_to_be_classified
-    print(error_list)
-    plt.plot(range(len(error_list)), error_list)
+    plt.plot(range(1:len(error_list)), error_list[1:len(error_list)], label=str(p)+"% noise")
     plt.xlabel('number of neighbors')
     plt.ylabel('classifier error')
-    plt.set_title(str(p)+"% noise")
     plt.tight_layout()
+    plt.lengend()
     plt.show()
+    '''
 
     '''
-    # Visualize the initial and relabeled dataset using a scatter plot to compare the results
+    # This part is for visualizing the initial and relabeled dataset using a scatter plot to compare the results
+    classified_dataset = classifier.classify_dataset(i);
     fig, axs = plt.subplots(2)
     colors = numpy.array(range(0,len(classified_dataset.index)), dtype=object)
     colors[classified_dataset['class_label'] == '+'] = 'r'
