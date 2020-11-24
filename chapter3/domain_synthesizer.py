@@ -23,13 +23,15 @@ for row_index, row_data in df.iterrows():
         df.loc[row_index,'class_label'] = '+'
     else:
         df.loc[row_index,'class_label'] = '-'
+df.to_csv("datasets/0%_noise.csv", index=False)
 
 # Visualize the synthesized domain usgin a scatter plot
+'''
 colors = numpy.array(range(0,num_examples), dtype=object)
 colors[df['class_label'] == '+'] = 'r'
 colors[df['class_label'] == '-'] = 'b'
 plt.scatter(df['att1'],df['att2'],c=colors)
-#plt.show()
+plt.show()'''
 
 # This function adds noise to our labels based on the probabilty given to it
 def mutator(row,p):
