@@ -2,53 +2,37 @@
 #include<fstream>
 #include<sstream>
 #include<stdio.h>
+#include<math.h>
 
 PolynomialClassifier::PolynomialClassifier(std::vector<example> training_set, uint8_t n, uint8_t r):training_set(training_set), n(n), r(r){
 	std::vector<uint8_t> parent_term;
+	//TODO scale values ([0,1])
 	create_term(0, parent_term, r);
 }
 
-PolynomialClassifier::PolynomialClassifier(std::string file_path, uint8_t r){
-	std::vector<example> training_set;
-	// Open the file using the given file path
-	std::ifstream fin(file_path);
-	// Craete a string that holds the lines of our csv file
+PolynomialClassifier::PolynomialClassifier(std::string training_set_file_path, std::string dataset_file_path, uint8_t r){
+	std::ifstream fin(training_set_file_path);
+	// Read the first line (csv header) which contains attribute names
 	std::string line, element;
-	std::vector<float> attributes;
+	getline(fin, line);
+	std::stringstream ss(line);
 	uint8_t n = 0;
-	if (fin.is_open()){
-		// Read the first line (csv header) which contains attribute names
-		getline(fin, line);
-		std::stringstream ss(line);
-		while (getline(ss, element, ',')){
-			attribute_names.push_back(element);
-			// For each element increment n
-			n++;
-		}
-		// Because we don't want to include 'lablel' in the attribute vector, decrement n
-		n --;
-		// Now for each example read the line 
-		while (getline(fin, line)){
-			std::stringstream ss(line);
-			for (int i=0; i < n; i++){
-				// Read the comma separated values of the line
-				getline(ss, element, ',');
-				// Add the value to attributes vector
-				attributes.push_back(std::stof(element));
-			}
-			// Make an example using the just acquired attributes
-			example e(attributes);
-			// Read the final element which is the label
-			getline(ss, element, ',');
-			// Set the label of the example
-			e.label = element;
-			// Clear the attributes vector for use in the next example
-			attributes.clear();
-			// Push the newly made example into the trainig_set
-			training_set.push_back(e);
-		}
+	while (getline(ss, element, ',')){
+		attribute_names.push_back(element);
+		// For each element increment n
+		n++;
 	}
-	else printf("Error: Could not open file\n");
+	// Because we don't want to include 'lablel' in the attribute vector, decrement n
+	n --;
+	fin.close();
+	training_set = csv_reader(training_set_file_path, n);
+	dataset = csv_reader(dataset_file_path, n);
+	for (int i =0; i < dataset.size(); i++){
+		for (int j =0; j < dataset[i].attribute_vector.size(); j++){
+			printf("%f ", dataset[i].attribute_vector[j]);
+		}
+		printf("\n");
+	}
 	PolynomialClassifier(training_set, n, r);
 }
 
@@ -88,3 +72,80 @@ void PolynomialClassifier::create_term(uint8_t variable_num, std::vector<uint8_t
 		parent_term.pop_back();
 	}
 }
+
+std::vector<example> PolynomialClassifier::csv_reader(std::string file_path, int n){
+	std::vector<example> output;
+	// Open the file using the given file path
+	std::ifstream fin(file_path);
+	// Create a string that holds the lines of our csv file
+	std::string line, element;
+	std::vector<float> attributes;
+	// Read the header line so the pointer moves past it. We don't want anything to do with it in this function
+	getline(fin,line);
+	if (fin.is_open()){
+		// For each example read the line 
+		while (getline(fin, line)){
+			std::stringstream ss(line);
+			for (int i=0; i < n; i++){
+				// Read the comma separated values of the line
+				getline(ss, element, ',');
+				// Add the value to attributes vector
+				attributes.push_back(std::stof(element));
+			}
+			// Make an example using the just acquired attributes
+			example e(attributes);
+			// Read the final element which is the label
+			getline(ss, element, ',');
+			// Set the label of the example
+			e.label = element;
+			// Clear the attributes vector for use in the next example
+			attributes.clear();
+			// Push the newly made example into the trainig_set
+			output.push_back(e);
+		}
+	}
+	else printf("Error: Could not open file\n");
+	fin.close();
+	return output;
+}
+
+void PolynomialClassifier::perceptron(float learning_rate, float err_tresh){
+	// Initialize coefficients
+	coeffs.assign(polynomial_terms.size(), 0.1);
+	unsigned int errors = 0;
+	float error_rate;
+	std::vector<int> nonzero_terms;
+	float c = 0;
+	do{
+		errors = 0;
+		// Iterate through all examples in the training_set
+		for (int example_index =0; example_index < training_set.size(); example_index++){
+			std::vector<float> atts = training_set.at(example_index).attribute_vector;
+			nonzero_terms.clear();
+			// c variable holds the classifiers evaluation of the current example
+			c = 0;
+			// Iterate through all polynomial terms
+			for(long term_index =0; term_index < polynomial_terms.size(); term_index++){
+				float term_result = coeffs.at(term_index);
+				for(short i = 0; i < polynomial_terms[term_index].size(); i +=2)
+					term_result *= pow(atts.at(polynomial_terms[term_index].at(i)), polynomial_terms[term_index].at(i+1));
+				if (term_result != 0.0000){
+					nonzero_terms.push_back(term_index);
+					c += term_result;
+				}
+			}
+			if (c >0 && training_set.at(example_index).label=="-"){
+				for (int i =0; i <nonzero_terms.size(); i++)
+					coeffs[nonzero_terms.at(i)] -= learning_rate;
+				errors ++;
+			}
+			else if(c<0 && training_set.at(example_index).label=="+"){
+				for (int i =0; i <nonzero_terms.size(); i++)
+					coeffs[nonzero_terms.at(i)] += learning_rate;
+				errors ++;
+			}
+		}
+		float error_rate = float(errors)/float(training_set.size());
+	}while (error_rate > err_tresh);
+}
+

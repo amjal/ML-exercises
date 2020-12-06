@@ -2,6 +2,6 @@
 #include "PolynomialClassifier.h"
 #include<vector>
 int main(){
-	PolynomialClassifier classifier("data.csv", 2);
+	PolynomialClassifier classifier("labeled.csv", "unlabeled.csv", 2);
 	return 0;
 }
