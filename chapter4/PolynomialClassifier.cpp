@@ -6,7 +6,45 @@
 
 PolynomialClassifier::PolynomialClassifier(std::vector<example> training_set, uint8_t n, uint8_t r):training_set(training_set), n(n), r(r){
 	std::vector<uint8_t> parent_term;
-	//TODO scale values ([0,1])
+	//scale values ([0,1])
+	// i iterates over attributes (or columns)
+	for (int i =0; i< n; i++){
+		float min = training_set[0].attribute_vector.at(i);
+		float max = training_set[0].attribute_vector.at(i);
+		// j iterates over rows (or examples) to find the mininum and maximum value of i-th attribute in the training_set
+		for (int j=0; j < training_set.size(); j ++){
+			if (training_set.at(j).attribute_vector.at(i) > max)
+				max = training_set.at(j).attribute_vector.at(i);
+			else if(training_set.at(j).attribute_vector.at(i) < min)
+				min = training_set.at(j).attribute_vector.at(i);
+		}
+		float diff = max - min;
+		// j iterates over rows (or examples) this time to scale the values
+		for (int j=0; j< training_set.size(); j++){
+			training_set.at(j).attribute_vector.at(i) -= min;
+			training_set.at(j).attribute_vector.at(i) /= diff;
+		}
+	}
+	
+	// Do the whole process again for dataset
+	for (int i =0; i< n; i++){
+		float min = dataset[0].attribute_vector.at(i);
+		float max = dataset[0].attribute_vector.at(i);
+		// j iterates over rows (or examples) to find the mininum and maximum value of i-th attribute in the dataset
+		for (int j=0; j < dataset.size(); j ++){
+			if (dataset.at(j).attribute_vector.at(i) > max)
+				max = dataset.at(j).attribute_vector.at(i);
+			else if(dataset.at(j).attribute_vector.at(i) < min)
+				min = dataset.at(j).attribute_vector.at(i);
+		}
+		float diff = max - min;
+		// j iterates over rows (or examples) this time to scale the values
+		for (int j=0; j< dataset.size(); j++){
+			dataset.at(j).attribute_vector.at(i) -= min;
+			dataset.at(j).attribute_vector.at(i) /= diff;
+		}
+	}
+
 	create_term(0, parent_term, r);
 }
 
