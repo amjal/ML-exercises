@@ -1,5 +1,7 @@
 #include<stdio.h>
+#include "PolynomialClassifier.h"
+#include<vector>
 int main(){
-	printf("hello\n");
+	PolynomialClassifier classifier("data.csv", 2);
 	return 0;
 }
