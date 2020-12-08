@@ -2,4 +2,4 @@
 ## Computer Assignments
 ### Assignment 1
 
-![Assignment 1 definition](assignment definitions/assignment1.png?raw=true)
+[Assignment 1 definition](https://www.google.com)
