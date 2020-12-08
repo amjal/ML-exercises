@@ -2,4 +2,4 @@
 ## Computer Assignments
 ### Assignment 1
 
-[Assignment 1 definition](https://www.google.com)
+![Assignment 1 definition](https://github.com/amjal/ML-exercises/chapter4/assignment definitions/assignment1.png)
