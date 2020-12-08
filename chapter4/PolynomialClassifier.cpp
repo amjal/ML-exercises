@@ -4,7 +4,8 @@
 #include<stdio.h>
 #include<math.h>
 
-PolynomialClassifier::PolynomialClassifier(std::vector<example> training_set, uint8_t n, uint8_t r):training_set(training_set), n(n), r(r){
+void PolynomialClassifier::init(uint8_t n, uint8_t r){
+	this->n = n;
 	std::vector<uint8_t> parent_term;
 	//scale values ([0,1])
 	// i iterates over attributes (or columns)
@@ -46,9 +47,18 @@ PolynomialClassifier::PolynomialClassifier(std::vector<example> training_set, ui
 	}
 
 	create_term(0, parent_term, r);
+
+	/*
+	for (long i =0; i<polynomial_terms.size(); i ++){
+		for (short j=0; j < polynomial_terms.at(i).size(); j++){
+			printf("%d ", polynomial_terms.at(i).at(j));
+		}
+		printf("\n");
+	}
+	*/
 }
 
-PolynomialClassifier::PolynomialClassifier(std::string training_set_file_path, std::string dataset_file_path, uint8_t r){
+PolynomialClassifier::PolynomialClassifier(std::string training_set_file_path, std::string dataset_file_path, uint8_t r):r(r){
 	std::ifstream fin(training_set_file_path);
 	// Read the first line (csv header) which contains attribute names
 	std::string line, element;
@@ -60,18 +70,20 @@ PolynomialClassifier::PolynomialClassifier(std::string training_set_file_path, s
 		// For each element increment n
 		n++;
 	}
-	// Because we don't want to include 'lablel' in the attribute vector, decrement n
+	// Because we don't want to include 'label' in the attribute vector, decrement n
 	n --;
 	fin.close();
 	training_set = csv_reader(training_set_file_path, n);
 	dataset = csv_reader(dataset_file_path, n);
+	/*
 	for (int i =0; i < dataset.size(); i++){
 		for (int j =0; j < dataset[i].attribute_vector.size(); j++){
 			printf("%f ", dataset[i].attribute_vector[j]);
 		}
 		printf("\n");
 	}
-	PolynomialClassifier(training_set, n, r);
+	*/
+	init(n, r);
 }
 
 void PolynomialClassifier::create_term(uint8_t variable_num, std::vector<uint8_t> parent_term, uint8_t k){
@@ -158,13 +170,17 @@ void PolynomialClassifier::perceptron(float learning_rate, float err_tresh){
 		errors = 0;
 		// Iterate through all examples in the training_set
 		for (int example_index =0; example_index < training_set.size(); example_index++){
+			// Keep the example's attribute vector
 			std::vector<float> atts = training_set.at(example_index).attribute_vector;
+			// We keep the nonzero terms because we only change the coefficient for those terms in perceptron learning
 			nonzero_terms.clear();
 			// c variable holds the classifiers evaluation of the current example
 			c = 0;
 			// Iterate through all polynomial terms
 			for(long term_index =0; term_index < polynomial_terms.size(); term_index++){
+				// Get the coefficient for the current term
 				float term_result = coeffs.at(term_index);
+				// Iterate through the term to calculate the term result
 				for(short i = 0; i < polynomial_terms[term_index].size(); i +=2)
 					term_result *= pow(atts.at(polynomial_terms[term_index].at(i)), polynomial_terms[term_index].at(i+1));
 				if (term_result != 0.0000){
@@ -183,7 +199,24 @@ void PolynomialClassifier::perceptron(float learning_rate, float err_tresh){
 				errors ++;
 			}
 		}
-		float error_rate = float(errors)/float(training_set.size());
+		error_rate = float(errors)/float(training_set.size());
 	}while (error_rate > err_tresh);
 }
 
+void PolynomialClassifier::label_examples(){
+	float c=0;
+	for (int example_index=0; example_index < dataset.size(); example_index++){
+		std::vector<float> atts = training_set.at(example_index).attribute_vector;
+		// This is the result of the polynomial for the example
+		c = 0;
+		for(long term_index=0; term_index < polynomial_terms.size(); term_index++){
+			float term_result = coeffs.at(term_index);
+			for(short i =0; i < polynomial_terms.at(term_index).size(); i +=2)
+				term_result *= pow(atts.at(polynomial_terms.at(term_index).at(i)), polynomial_terms.at(term_index).at(i+1));
+			c+= term_result;
+		}
+		if(c >=0)
+			dataset.at(example_index).label = "+";
+		else dataset.at(example_index).label = "-";
+	}
+}

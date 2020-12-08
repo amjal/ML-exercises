@@ -21,9 +21,10 @@ class PolynomialClassifier{
 		std::vector<std::vector<uint8_t>> polynomial_terms;
 		// This vector holds the coefficient for each of the polynomial terms
 		std::vector<float> coeffs;
-		// The two constructors of the class
-		PolynomialClassifier(std::vector<example> training_set, uint8_t n, uint8_t r);
+		// The constructor of the class
 		PolynomialClassifier(std::string training_set_file_path, std::string dataset_file_path, uint8_t r);
+		// This member function scales the attribute values and creates the r-th order polynomial
+		void init( uint8_t n, uint8_t r);
 		// This member function produces all possible terms in a r-th order n-variable polynomial recursively
 		void create_term(uint8_t variable_num, std::vector<uint8_t> parent_term, uint8_t k);
 		// This member function gets the path to the csv file containig example data and puts it in a vector
@@ -31,5 +32,7 @@ class PolynomialClassifier{
 		std::vector<example> csv_reader(std::string file_path, int n);
 		// This member function trains the classifier based on perceptron algorithm and fills the coefficients vector
 		void perceptron(float learning_rate, float err_tresh);
+		// This member function labels all dataset example by evaluating the polynomial obtained using training_set
+		void label_examples();
 };
 #endif
