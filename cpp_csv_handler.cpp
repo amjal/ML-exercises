@@ -1,12 +1,14 @@
 #include "cpp_csv_handler.h"
-#include<stdio.h>
+#include<cstdio>
+#include<iostream>
 
 void csvhandler:: headers_init(){
 	size_t pos;
 	std::string line;
 	std::getline(csv_file, line);
 	for(int i=0; (pos = line.find(",")) != std::string::npos; i++){
-		headers.push_back(std::string("att").append(std::to_string(i)));
+		std::string new_header = std::string("att").append(std::to_string(i));
+		headers.push_back(new_header);
 		line.erase(0, pos+1);
 	}
 	csv_file.seekg(0);

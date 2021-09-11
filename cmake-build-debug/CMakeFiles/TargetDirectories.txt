@@ -1,0 +1,3 @@
+/home/amir/ML-exercises/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/amir/ML-exercises/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/amir/ML-exercises/cmake-build-debug/CMakeFiles/ML_exercises.dir

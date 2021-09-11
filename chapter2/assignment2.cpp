@@ -2,6 +2,7 @@
 #include<map>
 #include<vector>
 #include"../cpp_csv_handler.h"
+#include<iostream>
 
 int example_num = 0;
 
@@ -20,6 +21,7 @@ example classify(example ex){
 	for(std::map<std::string, std::vector<example>>::iterator class_it = example_set.begin() ; class_it != example_set.end(); class_it++){
 		//For each class calculate the probability of that class
 		pci = float((class_it->second).size()) / float(example_num);
+		std::cout << pci << "  " << class_it ->first << '\n';
 		pxci = 1;
 		//Iterate through all attributes of the ex example
 		for(std::map<std::string, std::string>::iterator att_it = ex.attribute_set.begin() ; att_it != ex.attribute_set.end(); att_it ++){
@@ -55,7 +57,7 @@ example classify(example ex){
 int main(){
 	csvhandler file_handler;	
 	printf("Reading data from file...\n");
-	std::vector<example> example_vector = file_handler.get_examples("datasets/agaricus8.data");
+	std::vector<example> example_vector = file_handler.get_examples("datasets/agaricus-lepiota.data");
 	example_num = example_vector.size();
 	printf("Grouping examples...\n");
 	example_set = file_handler.get_grouped_examples(example_vector);
