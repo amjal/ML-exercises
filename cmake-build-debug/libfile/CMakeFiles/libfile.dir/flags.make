@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/amir/ML-exercises/cmake-build-debug -I/home/amir/ML-exercises/libfile -I/home/amir/ML-exercises/. -I/home/amir/ML-exercises/chapter4
+CXX_INCLUDES = 
 
 CXX_FLAGS = -g -std=gnu++14
 

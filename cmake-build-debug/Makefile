@@ -129,6 +129,19 @@ ML_exercises/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/build
 .PHONY : ML_exercises/fast
 
+#=============================================================================
+# Target rules for targets named libfile
+
+# Build rule for target.
+libfile: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libfile
+.PHONY : libfile
+
+# fast build rule for target.
+libfile/fast:
+	$(MAKE) $(MAKESILENT) -f libfile/CMakeFiles/libfile.dir/build.make libfile/CMakeFiles/libfile.dir/build
+.PHONY : libfile/fast
+
 chapter2/assignment2.o: chapter2/assignment2.cpp.o
 .PHONY : chapter2/assignment2.o
 
@@ -249,54 +262,6 @@ chapter4/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/main.cpp.s
 .PHONY : chapter4/main.cpp.s
 
-cpp_csv_handler.o: cpp_csv_handler.cpp.o
-.PHONY : cpp_csv_handler.o
-
-# target to build an object file
-cpp_csv_handler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/cpp_csv_handler.cpp.o
-.PHONY : cpp_csv_handler.cpp.o
-
-cpp_csv_handler.i: cpp_csv_handler.cpp.i
-.PHONY : cpp_csv_handler.i
-
-# target to preprocess a source file
-cpp_csv_handler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/cpp_csv_handler.cpp.i
-.PHONY : cpp_csv_handler.cpp.i
-
-cpp_csv_handler.s: cpp_csv_handler.cpp.s
-.PHONY : cpp_csv_handler.s
-
-# target to generate assembly for a file
-cpp_csv_handler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/cpp_csv_handler.cpp.s
-.PHONY : cpp_csv_handler.cpp.s
-
-file_handler_test.o: file_handler_test.cpp.o
-.PHONY : file_handler_test.o
-
-# target to build an object file
-file_handler_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/file_handler_test.cpp.o
-.PHONY : file_handler_test.cpp.o
-
-file_handler_test.i: file_handler_test.cpp.i
-.PHONY : file_handler_test.i
-
-# target to preprocess a source file
-file_handler_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/file_handler_test.cpp.i
-.PHONY : file_handler_test.cpp.i
-
-file_handler_test.s: file_handler_test.cpp.s
-.PHONY : file_handler_test.s
-
-# target to generate assembly for a file
-file_handler_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/file_handler_test.cpp.s
-.PHONY : file_handler_test.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -306,6 +271,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ML_exercises"
+	@echo "... libfile"
 	@echo "... chapter2/assignment2.o"
 	@echo "... chapter2/assignment2.i"
 	@echo "... chapter2/assignment2.s"
@@ -321,12 +287,6 @@ help:
 	@echo "... chapter4/main.o"
 	@echo "... chapter4/main.i"
 	@echo "... chapter4/main.s"
-	@echo "... cpp_csv_handler.o"
-	@echo "... cpp_csv_handler.i"
-	@echo "... cpp_csv_handler.s"
-	@echo "... file_handler_test.o"
-	@echo "... file_handler_test.i"
-	@echo "... file_handler_test.s"
 .PHONY : help
 
 

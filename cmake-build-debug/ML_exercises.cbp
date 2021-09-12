@@ -5,7 +5,7 @@
 		<Option title="ML_exercises"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\libfile\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/amir/ML-exercises/cmake-build-debug"/>
@@ -44,6 +44,8 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/amir/ML-exercises/cmake-build-debug"/>
+					<Add directory="/home/amir/ML-exercises/libfile"/>
 					<Add directory="/home/amir/ML-exercises/."/>
 					<Add directory="/home/amir/ML-exercises/chapter4"/>
 					<Add directory="/usr/include/c++/9"/>
@@ -68,6 +70,8 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/amir/ML-exercises/cmake-build-debug"/>
+					<Add directory="/home/amir/ML-exercises/libfile"/>
 					<Add directory="/home/amir/ML-exercises/."/>
 					<Add directory="/home/amir/ML-exercises/chapter4"/>
 					<Add directory="/usr/include/c++/9"/>
@@ -83,6 +87,50 @@
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libfile">
+				<Option output="/home/amir/ML-exercises/cmake-build-debug/libfile/liblibfile.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/amir/ML-exercises/cmake-build-debug/libfile"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/libfile/Makefile&quot;  VERBOSE=1 libfile"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/libfile/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/libfile/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/libfile/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libfile/fast">
+				<Option output="/home/amir/ML-exercises/cmake-build-debug/libfile/liblibfile.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/amir/ML-exercises/cmake-build-debug/libfile"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/libfile/Makefile&quot;  VERBOSE=1 libfile/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/libfile/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/libfile/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/ML-exercises/cmake-build-debug/libfile/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
@@ -107,17 +155,17 @@
 		<Unit filename="/home/amir/ML-exercises/chapter4/main.cpp">
 			<Option target="ML_exercises"/>
 		</Unit>
-		<Unit filename="/home/amir/ML-exercises/cpp_csv_handler.cpp">
-			<Option target="ML_exercises"/>
+		<Unit filename="/home/amir/ML-exercises/libfile/libfile.cpp">
+			<Option target="libfile"/>
 		</Unit>
-		<Unit filename="/home/amir/ML-exercises/cpp_csv_handler.h">
-			<Option target="ML_exercises"/>
-		</Unit>
-		<Unit filename="/home/amir/ML-exercises/file_handler_test.cpp">
-			<Option target="ML_exercises"/>
+		<Unit filename="/home/amir/ML-exercises/libfile/libfile.h">
+			<Option target="libfile"/>
 		</Unit>
 		<Unit filename="/home/amir/ML-exercises/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/amir/ML-exercises/libfile/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libfile\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

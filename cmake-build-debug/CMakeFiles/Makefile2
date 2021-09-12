@@ -64,24 +64,41 @@ CMAKE_BINARY_DIR = /home/amir/ML-exercises/cmake-build-debug
 
 # The main recursive "all" target.
 all: CMakeFiles/ML_exercises.dir/all
+all: libfile/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: libfile/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/ML_exercises.dir/clean
+clean: libfile/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory libfile
+
+# Recursive "all" directory target.
+libfile/all: libfile/CMakeFiles/libfile.dir/all
+.PHONY : libfile/all
+
+# Recursive "preinstall" directory target.
+libfile/preinstall:
+.PHONY : libfile/preinstall
+
+# Recursive "clean" directory target.
+libfile/clean: libfile/CMakeFiles/libfile.dir/clean
+.PHONY : libfile/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/ML_exercises.dir
 
 # All Build rule for target.
-CMakeFiles/ML_exercises.dir/all:
+CMakeFiles/ML_exercises.dir/all: libfile/CMakeFiles/libfile.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target ML_exercises"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target ML_exercises"
 .PHONY : CMakeFiles/ML_exercises.dir/all
 
 # Build rule for subdir invocation for target.
@@ -99,6 +116,32 @@ ML_exercises: CMakeFiles/ML_exercises.dir/rule
 CMakeFiles/ML_exercises.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/clean
 .PHONY : CMakeFiles/ML_exercises.dir/clean
+
+#=============================================================================
+# Target rules for target libfile/CMakeFiles/libfile.dir
+
+# All Build rule for target.
+libfile/CMakeFiles/libfile.dir/all:
+	$(MAKE) $(MAKESILENT) -f libfile/CMakeFiles/libfile.dir/build.make libfile/CMakeFiles/libfile.dir/depend
+	$(MAKE) $(MAKESILENT) -f libfile/CMakeFiles/libfile.dir/build.make libfile/CMakeFiles/libfile.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target libfile"
+.PHONY : libfile/CMakeFiles/libfile.dir/all
+
+# Build rule for subdir invocation for target.
+libfile/CMakeFiles/libfile.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/ML-exercises/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libfile/CMakeFiles/libfile.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/ML-exercises/cmake-build-debug/CMakeFiles 0
+.PHONY : libfile/CMakeFiles/libfile.dir/rule
+
+# Convenience name for target.
+libfile: libfile/CMakeFiles/libfile.dir/rule
+.PHONY : libfile
+
+# clean rule for target.
+libfile/CMakeFiles/libfile.dir/clean:
+	$(MAKE) $(MAKESILENT) -f libfile/CMakeFiles/libfile.dir/build.make libfile/CMakeFiles/libfile.dir/clean
+.PHONY : libfile/CMakeFiles/libfile.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
