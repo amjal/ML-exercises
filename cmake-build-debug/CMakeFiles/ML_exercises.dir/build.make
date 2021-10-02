@@ -79,78 +79,19 @@ CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amir/ML-exercises/chapter2/assignment2.cpp -o CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.s
 
-CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.o: CMakeFiles/ML_exercises.dir/flags.make
-CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.o: ../chapter2/assignment3.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.o -c /home/amir/ML-exercises/chapter2/assignment3.cpp
-
-CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amir/ML-exercises/chapter2/assignment3.cpp > CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.i
-
-CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amir/ML-exercises/chapter2/assignment3.cpp -o CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.s
-
-CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.o: CMakeFiles/ML_exercises.dir/flags.make
-CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.o: ../chapter4/assignment1/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.o -c /home/amir/ML-exercises/chapter4/assignment1/main.cpp
-
-CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amir/ML-exercises/chapter4/assignment1/main.cpp > CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.i
-
-CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amir/ML-exercises/chapter4/assignment1/main.cpp -o CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.s
-
-CMakeFiles/ML_exercises.dir/chapter4/main.cpp.o: CMakeFiles/ML_exercises.dir/flags.make
-CMakeFiles/ML_exercises.dir/chapter4/main.cpp.o: ../chapter4/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ML_exercises.dir/chapter4/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ML_exercises.dir/chapter4/main.cpp.o -c /home/amir/ML-exercises/chapter4/main.cpp
-
-CMakeFiles/ML_exercises.dir/chapter4/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ML_exercises.dir/chapter4/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amir/ML-exercises/chapter4/main.cpp > CMakeFiles/ML_exercises.dir/chapter4/main.cpp.i
-
-CMakeFiles/ML_exercises.dir/chapter4/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ML_exercises.dir/chapter4/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amir/ML-exercises/chapter4/main.cpp -o CMakeFiles/ML_exercises.dir/chapter4/main.cpp.s
-
-CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.o: CMakeFiles/ML_exercises.dir/flags.make
-CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.o: ../chapter4/PolynomialClassifier.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.o -c /home/amir/ML-exercises/chapter4/PolynomialClassifier.cpp
-
-CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amir/ML-exercises/chapter4/PolynomialClassifier.cpp > CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.i
-
-CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amir/ML-exercises/chapter4/PolynomialClassifier.cpp -o CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.s
-
 # Object files for target ML_exercises
 ML_exercises_OBJECTS = \
-"CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.o" \
-"CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.o" \
-"CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.o" \
-"CMakeFiles/ML_exercises.dir/chapter4/main.cpp.o" \
-"CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.o"
+"CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.o"
 
 # External object files for target ML_exercises
 ML_exercises_EXTERNAL_OBJECTS =
 
 ML_exercises: CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.o
-ML_exercises: CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.o
-ML_exercises: CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.o
-ML_exercises: CMakeFiles/ML_exercises.dir/chapter4/main.cpp.o
-ML_exercises: CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.o
 ML_exercises: CMakeFiles/ML_exercises.dir/build.make
-ML_exercises: libfile/liblibfile.a
+ML_exercises: csv-parser/include/internal/libcsv.a
+ML_exercises: data-manager/libDataManager.a
 ML_exercises: CMakeFiles/ML_exercises.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ML_exercises"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ML_exercises"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ML_exercises.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

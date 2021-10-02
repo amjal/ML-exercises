@@ -130,17 +130,56 @@ ML_exercises/fast:
 .PHONY : ML_exercises/fast
 
 #=============================================================================
-# Target rules for targets named libfile
+# Target rules for targets named csv
 
 # Build rule for target.
-libfile: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libfile
-.PHONY : libfile
+csv: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 csv
+.PHONY : csv
 
 # fast build rule for target.
-libfile/fast:
-	$(MAKE) $(MAKESILENT) -f libfile/CMakeFiles/libfile.dir/build.make libfile/CMakeFiles/libfile.dir/build
-.PHONY : libfile/fast
+csv/fast:
+	$(MAKE) $(MAKESILENT) -f csv-parser/include/internal/CMakeFiles/csv.dir/build.make csv-parser/include/internal/CMakeFiles/csv.dir/build
+.PHONY : csv/fast
+
+#=============================================================================
+# Target rules for targets named csv_stats
+
+# Build rule for target.
+csv_stats: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 csv_stats
+.PHONY : csv_stats
+
+# fast build rule for target.
+csv_stats/fast:
+	$(MAKE) $(MAKESILENT) -f csv-parser/programs/CMakeFiles/csv_stats.dir/build.make csv-parser/programs/CMakeFiles/csv_stats.dir/build
+.PHONY : csv_stats/fast
+
+#=============================================================================
+# Target rules for targets named csv_info
+
+# Build rule for target.
+csv_info: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 csv_info
+.PHONY : csv_info
+
+# fast build rule for target.
+csv_info/fast:
+	$(MAKE) $(MAKESILENT) -f csv-parser/programs/CMakeFiles/csv_info.dir/build.make csv-parser/programs/CMakeFiles/csv_info.dir/build
+.PHONY : csv_info/fast
+
+#=============================================================================
+# Target rules for targets named DataManager
+
+# Build rule for target.
+DataManager: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DataManager
+.PHONY : DataManager
+
+# fast build rule for target.
+DataManager/fast:
+	$(MAKE) $(MAKESILENT) -f data-manager/CMakeFiles/DataManager.dir/build.make data-manager/CMakeFiles/DataManager.dir/build
+.PHONY : DataManager/fast
 
 chapter2/assignment2.o: chapter2/assignment2.cpp.o
 .PHONY : chapter2/assignment2.o
@@ -166,102 +205,6 @@ chapter2/assignment2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.s
 .PHONY : chapter2/assignment2.cpp.s
 
-chapter2/assignment3.o: chapter2/assignment3.cpp.o
-.PHONY : chapter2/assignment3.o
-
-# target to build an object file
-chapter2/assignment3.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.o
-.PHONY : chapter2/assignment3.cpp.o
-
-chapter2/assignment3.i: chapter2/assignment3.cpp.i
-.PHONY : chapter2/assignment3.i
-
-# target to preprocess a source file
-chapter2/assignment3.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.i
-.PHONY : chapter2/assignment3.cpp.i
-
-chapter2/assignment3.s: chapter2/assignment3.cpp.s
-.PHONY : chapter2/assignment3.s
-
-# target to generate assembly for a file
-chapter2/assignment3.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.s
-.PHONY : chapter2/assignment3.cpp.s
-
-chapter4/PolynomialClassifier.o: chapter4/PolynomialClassifier.cpp.o
-.PHONY : chapter4/PolynomialClassifier.o
-
-# target to build an object file
-chapter4/PolynomialClassifier.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.o
-.PHONY : chapter4/PolynomialClassifier.cpp.o
-
-chapter4/PolynomialClassifier.i: chapter4/PolynomialClassifier.cpp.i
-.PHONY : chapter4/PolynomialClassifier.i
-
-# target to preprocess a source file
-chapter4/PolynomialClassifier.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.i
-.PHONY : chapter4/PolynomialClassifier.cpp.i
-
-chapter4/PolynomialClassifier.s: chapter4/PolynomialClassifier.cpp.s
-.PHONY : chapter4/PolynomialClassifier.s
-
-# target to generate assembly for a file
-chapter4/PolynomialClassifier.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.s
-.PHONY : chapter4/PolynomialClassifier.cpp.s
-
-chapter4/assignment1/main.o: chapter4/assignment1/main.cpp.o
-.PHONY : chapter4/assignment1/main.o
-
-# target to build an object file
-chapter4/assignment1/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.o
-.PHONY : chapter4/assignment1/main.cpp.o
-
-chapter4/assignment1/main.i: chapter4/assignment1/main.cpp.i
-.PHONY : chapter4/assignment1/main.i
-
-# target to preprocess a source file
-chapter4/assignment1/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.i
-.PHONY : chapter4/assignment1/main.cpp.i
-
-chapter4/assignment1/main.s: chapter4/assignment1/main.cpp.s
-.PHONY : chapter4/assignment1/main.s
-
-# target to generate assembly for a file
-chapter4/assignment1/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.s
-.PHONY : chapter4/assignment1/main.cpp.s
-
-chapter4/main.o: chapter4/main.cpp.o
-.PHONY : chapter4/main.o
-
-# target to build an object file
-chapter4/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/main.cpp.o
-.PHONY : chapter4/main.cpp.o
-
-chapter4/main.i: chapter4/main.cpp.i
-.PHONY : chapter4/main.i
-
-# target to preprocess a source file
-chapter4/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/main.cpp.i
-.PHONY : chapter4/main.cpp.i
-
-chapter4/main.s: chapter4/main.cpp.s
-.PHONY : chapter4/main.s
-
-# target to generate assembly for a file
-chapter4/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/chapter4/main.cpp.s
-.PHONY : chapter4/main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -270,23 +213,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... DataManager"
 	@echo "... ML_exercises"
-	@echo "... libfile"
+	@echo "... csv"
+	@echo "... csv_info"
+	@echo "... csv_stats"
 	@echo "... chapter2/assignment2.o"
 	@echo "... chapter2/assignment2.i"
 	@echo "... chapter2/assignment2.s"
-	@echo "... chapter2/assignment3.o"
-	@echo "... chapter2/assignment3.i"
-	@echo "... chapter2/assignment3.s"
-	@echo "... chapter4/PolynomialClassifier.o"
-	@echo "... chapter4/PolynomialClassifier.i"
-	@echo "... chapter4/PolynomialClassifier.s"
-	@echo "... chapter4/assignment1/main.o"
-	@echo "... chapter4/assignment1/main.i"
-	@echo "... chapter4/assignment1/main.s"
-	@echo "... chapter4/main.o"
-	@echo "... chapter4/main.i"
-	@echo "... chapter4/main.s"
 .PHONY : help
 
 

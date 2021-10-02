@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.o CMakeFiles/ML_exercises.dir/chapter2/assignment3.cpp.o CMakeFiles/ML_exercises.dir/chapter4/assignment1/main.cpp.o CMakeFiles/ML_exercises.dir/chapter4/main.cpp.o CMakeFiles/ML_exercises.dir/chapter4/PolynomialClassifier.cpp.o -o ML_exercises  libfile/liblibfile.a 
+/usr/bin/c++ -g CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.o -o ML_exercises  csv-parser/include/internal/libcsv.a data-manager/libDataManager.a -pthread 

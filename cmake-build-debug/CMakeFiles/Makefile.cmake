@@ -17,10 +17,17 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/CMakeLanguageInformation.cmake"
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/CMakeSystemSpecificInformation.cmake"
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/CheckCSourceCompiles.cmake"
+  "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/CheckIncludeFile.cmake"
+  "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/CheckLibraryExists.cmake"
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/Compiler/GNU-C.cmake"
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/Compiler/GNU-CXX.cmake"
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/Compiler/GNU.cmake"
+  "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/FindPackageHandleStandardArgs.cmake"
+  "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/FindPackageMessage.cmake"
+  "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/FindThreads.cmake"
+  "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/Internal/CheckSourceCompiles.cmake"
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/Platform/Linux-GNU-C.cmake"
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/Platform/Linux-GNU-CXX.cmake"
   "/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/share/cmake-3.20/Modules/Platform/Linux-GNU.cmake"
@@ -31,7 +38,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.20.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeSystem.cmake"
-  "../libfile/CMakeLists.txt"
+  "../csv-parser/CMakeLists.txt"
+  "../csv-parser/include/internal/CMakeLists.txt"
+  "../csv-parser/programs/CMakeLists.txt"
+  "../data-manager/CMakeLists.txt"
   )
 
 # The corresponding makefile is:
@@ -43,11 +53,17 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "libfile/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "csv-parser/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "csv-parser/include/internal/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "csv-parser/programs/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "data-manager/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/ML_exercises.dir/DependInfo.cmake"
-  "libfile/CMakeFiles/libfile.dir/DependInfo.cmake"
+  "csv-parser/include/internal/CMakeFiles/csv.dir/DependInfo.cmake"
+  "csv-parser/programs/CMakeFiles/csv_stats.dir/DependInfo.cmake"
+  "csv-parser/programs/CMakeFiles/csv_info.dir/DependInfo.cmake"
+  "data-manager/CMakeFiles/DataManager.dir/DependInfo.cmake"
   )

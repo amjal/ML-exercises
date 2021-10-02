@@ -1,74 +1,73 @@
 #include<string>
 #include<map>
 #include<vector>
-#include"../cpp_csv_handler.h"
 #include<iostream>
+#include<DataManager.h>
 
-int example_num = 0;
+std::map<std::string, std::vector<std::map<std::string,float>>> attribute_probs;
 
-// A map from class label to examples that are labeled with that class label
-std::map<std::string, std::vector<example>> example_set;
-// This has has the following structure: { class label --> {attribute value --> {probability of the attribute in the class}}}
-std::map<std::string, std::map<std::string, float>> attribute_probs;
-
-example classify(example ex){
+std::string classify(example* ex, size_t examples_num, const std::map<std::string, std::vector<example*>>& grouped_examples){
+    std::string result;
+    // I don't remove the example I want to classify from the list assuming the error that creates is negligible
 	float max_p = 0;
 	//pci denotes P(Ci)
 	float pci;
 	//pxic denotes P(X | Ci)
 	float pxci = 1;
 	//Iterate through all different classes of examples
-	for(std::map<std::string, std::vector<example>>::iterator class_it = example_set.begin() ; class_it != example_set.end(); class_it++){
+	for(const auto & class_it : grouped_examples){
+        std::string ci = class_it.first;
 		//For each class calculate the probability of that class
-		pci = float((class_it->second).size()) / float(example_num);
-		std::cout << pci << "  " << class_it ->first << '\n';
+		pci = float((class_it.second).size()) / float(examples_num);
+		//std::cout << pci << "  " << ci << '\n';
 		pxci = 1;
 		//Iterate through all attributes of the ex example
-		for(std::map<std::string, std::string>::iterator att_it = ex.attribute_set.begin() ; att_it != ex.attribute_set.end(); att_it ++){
+		for(size_t att_index = 0; att_index< ex->attributes.size(); att_index ++){
+		    std::string atti = ex->attributes.at(att_index);
 			// Have we calculated the probability of this attribute for this class before?
-			if (attribute_probs[class_it -> first].count(att_it -> second) == 0){// If no then calculate it
-				float att_num = 0;
-				float att_match = 0;
+			if (attribute_probs[ci].at(att_index).find(atti) == attribute_probs[ci].at(att_index).end()){// If no then calculate it
+				long double att_num = class_it.second.size();
+				long double att_match = 0;
 				//Now iterate through all examples belonging to the same class calculating the probability P(Xi|Ci)
-				for(int i=0 ; i< (class_it->second).size() ; i++){
+				for(example* ci_exi_it : class_it.second){
 					//First check if the example in vector has this particular attribute of ex
-					if((class_it->second)[i].attribute_set.count(att_it->first)){
-						att_num ++;
-						if((class_it->second)[i].attribute_set[att_it->first] == att_it->second){
-							att_match ++;
-						}
-					}
+					if(ci_exi_it->attributes.at(att_index) == atti)
+                        att_match ++;
 				}
-				attribute_probs[class_it ->first][att_it ->second] = att_match/att_num;
+				attribute_probs[ci].at(att_index)[atti] = att_match/att_num;
 			}
 			// This is naive bayesian assumption in which all attributes are assumed to be independent
-			pxci *= attribute_probs[class_it ->first][att_it ->second];
+			pxci *= attribute_probs[ci].at(att_index)[atti];
 		}
 		pxci *= pci;
 		//Find which class maximaizes P(X|Ci)*P(Ci)
 		if(pxci > max_p){
 			max_p = pxci;
-			ex.class_label = class_it->first;
+			result = ci;
 		}
 	}
-	return ex;
+	return result;
 }
-		
+
 int main(){
-	csvhandler file_handler;	
+    DataManager dm("../chapter2/datasets/agaricus8.data", 0,  false);
 	printf("Reading data from file...\n");
-	std::vector<example> example_vector = file_handler.get_examples("datasets/agaricus-lepiota.data");
-	example_num = example_vector.size();
-	printf("Grouping examples...\n");
-	example_set = file_handler.get_grouped_examples(example_vector);
+    std::vector<example*> example_list = dm.getListExamples();
+    printf("Grouping examples...\n");
+    std::map<std::string, std::vector<example*>> grouped_examples = dm.getGroupedExamples(example_list);
 	printf("Running tests...\n");
-	int true_positive =0;
-	for(int i=0 ; i < example_vector.size(); i++){
-		std::string cl = example_vector[i].class_label;
-		example ex = classify(example_vector[i]);	
-		if(ex.class_label == cl)
-			true_positive ++;
+	// Initialize the attribute_probs map, this reduces the runtime in the classify function
+	for(const auto& class_it : grouped_examples){
+	    attribute_probs[class_it.first] = std::vector<std::map<std::string,float>>();
+	    attribute_probs[class_it.first].assign(example_list.at(0)->attributes.size(), std::map<std::string,float>());
 	}
-	printf("%f\n", float(true_positive)/float(example_vector.size()));
+	size_t true_positive =0;
+	for(auto* ex : example_list){
+	    std::string orig_label = ex -> label;
+	    std::string new_label = classify(ex, dm.examples_num, grouped_examples);
+	    if(new_label == orig_label)
+	        true_positive ++;
+	}
+	printf("%f\n", float(true_positive)/float(dm.examples_num));
 	return 0;
 }

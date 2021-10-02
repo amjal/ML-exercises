@@ -44,7 +44,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/amir/ML-exercises/cmake-build-debug/libfile/cmake_install.cmake")
+  include("/home/amir/ML-exercises/cmake-build-debug/csv-parser/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/amir/ML-exercises/cmake-build-debug/data-manager/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
