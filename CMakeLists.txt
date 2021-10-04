@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMPILE_FLAGS}")
 
 add_executable(ML_exercises
         chapter2/assignment2.cpp)
-#        chapter2/assignment3.cpp
+#        chapter2/assignment3.cpp)
 #        chapter4/assignment1/main.cpp
 #        chapter4/example.h
 #        chapter4/main.cpp

@@ -2,11 +2,11 @@
 #include<map>
 #include<vector>
 #include<iostream>
-#include<DataManager.h>
+#include<DataManager.hpp>
 
 std::map<std::string, std::vector<std::map<std::string,float>>> attribute_probs;
 
-std::string classify(example* ex, size_t examples_num, const std::map<std::string, std::vector<example*>>& grouped_examples){
+std::string classify(example<std::string>* ex, size_t examples_num, const std::map<std::string, std::vector<example<std::string>*>>& grouped_examples){
     std::string result;
     // I don't remove the example I want to classify from the list assuming the error that creates is negligible
 	float max_p = 0;
@@ -29,7 +29,7 @@ std::string classify(example* ex, size_t examples_num, const std::map<std::strin
 				long double att_num = class_it.second.size();
 				long double att_match = 0;
 				//Now iterate through all examples belonging to the same class calculating the probability P(Xi|Ci)
-				for(example* ci_exi_it : class_it.second){
+				for(example<std::string>* ci_exi_it : class_it.second){
 					//First check if the example in vector has this particular attribute of ex
 					if(ci_exi_it->attributes.at(att_index) == atti)
                         att_match ++;
@@ -50,11 +50,11 @@ std::string classify(example* ex, size_t examples_num, const std::map<std::strin
 }
 
 int main(){
-    DataManager dm("../chapter2/datasets/agaricus8.data", 0,  false);
+    DataManager<std::string> dm("../chapter2/datasets/agaricus8.data", 0,  false);
 	printf("Reading data from file...\n");
-    std::vector<example*> example_list = dm.getListExamples();
+    std::vector<example<std::string>*> example_list = dm.getListExamples();
     printf("Grouping examples...\n");
-    std::map<std::string, std::vector<example*>> grouped_examples = dm.getGroupedExamples(example_list);
+    std::map<std::string, std::vector<example<std::string>*>> grouped_examples = dm.getGroupedExamples(example_list);
 	printf("Running tests...\n");
 	// Initialize the attribute_probs map, this reduces the runtime in the classify function
 	for(const auto& class_it : grouped_examples){

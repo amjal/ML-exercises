@@ -350,10 +350,7 @@
 		<Unit filename="/home/amir/ML-exercises/csv-parser/programs/csv_stats.cpp">
 			<Option target="csv_stats"/>
 		</Unit>
-		<Unit filename="/home/amir/ML-exercises/data-manager/DataManager.cpp">
-			<Option target="DataManager"/>
-		</Unit>
-		<Unit filename="/home/amir/ML-exercises/data-manager/DataManager.h">
+		<Unit filename="/home/amir/ML-exercises/data-manager/DataManager.hpp">
 			<Option target="DataManager"/>
 		</Unit>
 		<Unit filename="/home/amir/ML-exercises/CMakeLists.txt">

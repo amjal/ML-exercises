@@ -2,7 +2,8 @@
 #include<string>
 #include<map>
 #include<vector>
-#include<math.h>
+#include<cmath>
+#include<DataManager.hpp>
 
 int example_num = 0;
 float sigma;
@@ -10,11 +11,11 @@ float u_min = 100;
 float u_max = 0;
 
 // {class label -> {attribute -> attribute values}}
-std::map<std::string, std::map<std::string, std::vector<float>>> example_set;
+//std::map<std::string, std::map<std::string, std::vector<float>>> example_set;
 // The number of examples for each class is held in a separate map
-std::map<std::string, int> class_num;
+//std::map<std::string, int> class_num;
 
-std::string classify(std::map <std::string, float> new_example){
+std::string classify(example* ex, size_t examples_num, const std::map<std::string, std::vector<example*>> & grouped_examples){
 	sigma = (u_max - u_min)/float(example_num);
 	float max_p = 0;
 	std::string label;
@@ -57,46 +58,11 @@ std::string classify(std::map <std::string, float> new_example){
 }
 		
 int main(){
-	printf("Please enter examples and their corresponding attributes in the following format:\n");
-	printf("<example class label>\\n<attr name><space><attr value>\\n[<attr name><space><attr value>\\n...]\\n\n");
-	printf("enter exit as example class label when finished\n\n");
-	while(true){
-		printf("Enter class label of the example:(enter done when you're done)\n");
-		// cl denotes class label of each example that the user enters
-		std::string cl;
-		std::getline(std::cin, cl);
-		if (cl == "exit") return 0;
-		if (cl == "done") break;
-		//cl contains the class this example is labeled with
-		//Add the example to the corresponding class label. If class label doesn't exist add it.
-		if (example_set.find(cl) == example_set.end()){//This means the class doesn't yet exist in our example set
-			example_set[cl] = std::map<std::string, std::vector<float>>();
-			class_num[cl] = 0;
-		}
-		// number of examples will come handy in calculating P(Ci) and normalizing sigma
-		example_num ++;
-		class_num[cl] ++;
-		printf("Now enter attribute values of this example:\n");
-		while(true){
-			std::string input;
-			std::getline(std::cin, input);
-			if(input.length() == 0) break;
-			int space_loc = input.find(' ');
-			std::string attr_name = input.substr(0, space_loc);
-			float attr_value = std::stof(input.substr(space_loc+1 , input.length() - space_loc));
-			//If this attribute name doesn't exist in attribute list then add it
-			if(example_set[cl].find(attr_name) == example_set[cl].end())
-				example_set[cl][attr_name] = std::vector<float>();
-			example_set[cl][attr_name].push_back(attr_value);
-			// We need to calculate u_max - u_min for sigma
-			if (attr_value > u_max){
-				u_max = attr_value;
-			}
-			else if(attr_value < u_min){
-				u_min = attr_value;
-			}
-		}
-	}
+    DataManager dm("../chapter2/datasets/", true);
+    std::vector<example*> example_list = dm.getListExamples();
+    std::map<std::string, std::vector<example*>> grouped_examples = dm.getGroupedExamples();
+
+    /*
 	printf("Now enter the attribute set for the example you want to label:\n");
 	std::map <std::string, float> new_example;
 	while(true){
@@ -108,6 +74,7 @@ int main(){
 		float attr_value = std::stof(input.substr(space_loc +1, input.length() - space_loc));
 		new_example[attr_name] = attr_value;
 	}
+     */
 	std::cout<<classify(new_example)<<std::endl;
 	return 0;
 }

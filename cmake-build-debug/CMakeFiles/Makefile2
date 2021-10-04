@@ -152,12 +152,12 @@ CMakeFiles/ML_exercises.dir/all: csv-parser/include/internal/CMakeFiles/csv.dir/
 CMakeFiles/ML_exercises.dir/all: data-manager/CMakeFiles/DataManager.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ML_exercises.dir/build.make CMakeFiles/ML_exercises.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target ML_exercises"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=2,3 "Built target ML_exercises"
 .PHONY : CMakeFiles/ML_exercises.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ML_exercises.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/ML-exercises/cmake-build-debug/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/ML-exercises/cmake-build-debug/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ML_exercises.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/ML-exercises/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/ML_exercises.dir/rule
@@ -178,7 +178,7 @@ CMakeFiles/ML_exercises.dir/clean:
 csv-parser/include/internal/CMakeFiles/csv.dir/all:
 	$(MAKE) $(MAKESILENT) -f csv-parser/include/internal/CMakeFiles/csv.dir/build.make csv-parser/include/internal/CMakeFiles/csv.dir/depend
 	$(MAKE) $(MAKESILENT) -f csv-parser/include/internal/CMakeFiles/csv.dir/build.make csv-parser/include/internal/CMakeFiles/csv.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=5,6,7,8,9,10,11,12,13,14 "Built target csv"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=4,5,6,7,8,9,10,11,12,13 "Built target csv"
 .PHONY : csv-parser/include/internal/CMakeFiles/csv.dir/all
 
 # Build rule for subdir invocation for target.
@@ -204,7 +204,7 @@ csv-parser/include/internal/CMakeFiles/csv.dir/clean:
 csv-parser/programs/CMakeFiles/csv_stats.dir/all: csv-parser/include/internal/CMakeFiles/csv.dir/all
 	$(MAKE) $(MAKESILENT) -f csv-parser/programs/CMakeFiles/csv_stats.dir/build.make csv-parser/programs/CMakeFiles/csv_stats.dir/depend
 	$(MAKE) $(MAKESILENT) -f csv-parser/programs/CMakeFiles/csv_stats.dir/build.make csv-parser/programs/CMakeFiles/csv_stats.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=17,18 "Built target csv_stats"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=16,17 "Built target csv_stats"
 .PHONY : csv-parser/programs/CMakeFiles/csv_stats.dir/all
 
 # Build rule for subdir invocation for target.
@@ -230,7 +230,7 @@ csv-parser/programs/CMakeFiles/csv_stats.dir/clean:
 csv-parser/programs/CMakeFiles/csv_info.dir/all: csv-parser/include/internal/CMakeFiles/csv.dir/all
 	$(MAKE) $(MAKESILENT) -f csv-parser/programs/CMakeFiles/csv_info.dir/build.make csv-parser/programs/CMakeFiles/csv_info.dir/depend
 	$(MAKE) $(MAKESILENT) -f csv-parser/programs/CMakeFiles/csv_info.dir/build.make csv-parser/programs/CMakeFiles/csv_info.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=15,16 "Built target csv_info"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=14,15 "Built target csv_info"
 .PHONY : csv-parser/programs/CMakeFiles/csv_info.dir/all
 
 # Build rule for subdir invocation for target.
@@ -256,12 +256,12 @@ csv-parser/programs/CMakeFiles/csv_info.dir/clean:
 data-manager/CMakeFiles/DataManager.dir/all:
 	$(MAKE) $(MAKESILENT) -f data-manager/CMakeFiles/DataManager.dir/build.make data-manager/CMakeFiles/DataManager.dir/depend
 	$(MAKE) $(MAKESILENT) -f data-manager/CMakeFiles/DataManager.dir/build.make data-manager/CMakeFiles/DataManager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target DataManager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/ML-exercises/cmake-build-debug/CMakeFiles --progress-num=1 "Built target DataManager"
 .PHONY : data-manager/CMakeFiles/DataManager.dir/all
 
 # Build rule for subdir invocation for target.
 data-manager/CMakeFiles/DataManager.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/ML-exercises/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/ML-exercises/cmake-build-debug/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 data-manager/CMakeFiles/DataManager.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/ML-exercises/cmake-build-debug/CMakeFiles 0
 .PHONY : data-manager/CMakeFiles/DataManager.dir/rule

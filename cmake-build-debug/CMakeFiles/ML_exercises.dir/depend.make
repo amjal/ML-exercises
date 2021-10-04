@@ -3,5 +3,5 @@
 
 CMakeFiles/ML_exercises.dir/chapter2/assignment2.cpp.o: \
  ../csv-parser/single_include/csv.hpp \
- ../data-manager/DataManager.h \
+ ../data-manager/DataManager.hpp \
  ../chapter2/assignment2.cpp

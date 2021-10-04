@@ -12,5 +12,5 @@
 	assumption to handle vectors. Here are the results: 
 ![graph](assignmentdefinitions/plot.png)
 
-	If this result is correct, then it means the naive Bayesian assumption gets weaker with the increase
-	of our dataset's size. How do I validate this? 
+    This result shows the naive Bayesian assumption's error increases a little 
+    with the dataset's size. 
