@@ -1,5 +1,0 @@
-/home/amir/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/212.4746.93/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/amir/ML-exercises
-Building CSV library using C++17
--- Configuring done
--- Generating done
--- Build files have been written to: /home/amir/ML-exercises/cmake-build-debug
