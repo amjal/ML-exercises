@@ -4,77 +4,83 @@
 #include<vector>
 #include<cmath>
 #include<DataManager.hpp>
+#include<algorithm>
 
-int example_num = 0;
-float sigma;
-float u_min = 100;
-float u_max = 0;
 
-// {class label -> {attribute -> attribute values}}
-//std::map<std::string, std::map<std::string, std::vector<float>>> example_set;
-// The number of examples for each class is held in a separate map
-//std::map<std::string, int> class_num;
+std::vector<float> sigmas;
+std::vector<float> u_max;
+std::vector<float> u_min;
 
-std::string classify(example* ex, size_t examples_num, const std::map<std::string, std::vector<example*>> & grouped_examples){
-	sigma = (u_max - u_min)/float(example_num);
+float classify(example<float>* ex, size_t examples_num, const std::map<float, std::vector<example<float>*>> & grouped_examples){
+    // Calculate sigma for each attribute
 	float max_p = 0;
-	std::string label;
+	float result;
 	//pci denotes P(Ci)
 	float pci;
 	//pxic denotes P(X | Ci)
 	float pxci = 1;
-	//obtain iterator for example set
-	std::map<std::string, std::map<std::string, std::vector<float>>>::iterator class_it;
 	//Iterate through all different classes of examples
-	for(class_it = example_set.begin(); class_it != example_set.end(); class_it++){
+	for(const auto & class_it : grouped_examples){
 		//For each class calculate the probability of that class
-		pci = float(class_num[class_it->first])/ float(example_num);
-		pxci = 1;
-		//obtain iterator of example
-		std::map<std::string, float>::iterator example_it;
+		pci = float(class_it.second.size())/float(examples_num);
 		//Iterate through all attributes of the new example
-		for(example_it = new_example.begin() ; example_it != new_example.end(); example_it ++){
+		for(size_t att_index =0 ; att_index < ex->attributes.size(); att_index ++){
+            const float denominator = (examples_num -1)*sigmas.at(att_index)*sqrt(2*M_PI);
 			float pxi = 0;
-			// Check if the current attribute exists in the class list
-			if(class_it->second.count(example_it->first)){
-				//Now calculate the superposition pdf of the current attribute
-				for(int i =0; i < class_it->second[example_it->first].size(); i ++){
-					pxi += exp(-(example_it->second - class_it->second[example_it->first][i])/2.0);
-				}
-			}
-			pxi /= example_num*sigma*sqrt(2*M_PI);
+            //Now calculate the superposition pdf of the current attribute
+            for(example<float>* ci_exi_it : class_it.second){
+                // Do not calculate the test examples as data
+                if(ex != ci_exi_it){
+                    float pow = ex->attributes.at(att_index) - ci_exi_it->attributes.at(att_index);
+                    pxi += exp(-pow*pow/2.0/sigmas.at(att_index)/sigmas.at(att_index));
+                }
+            }
+			pxi /= denominator;
 			// This is the naive Bayesian assumption
 			pxci *= pxi;
 		}
 		pxci *= pci;
-		std::cout<<class_it->first<<": "<<pxci<<std::endl;
 		//Find which class maximaizes P(X|Ci)*P(Ci)
 		if(pxci > max_p){
 			max_p = pxci;
-			label = class_it -> first;
+			result = class_it.first;
 		}
 	}
-	return label;
+	return result;
 }
-		
-int main(){
-    DataManager dm("../chapter2/datasets/", true);
-    std::vector<example*> example_list = dm.getListExamples();
-    std::map<std::string, std::vector<example*>> grouped_examples = dm.getGroupedExamples();
 
-    /*
-	printf("Now enter the attribute set for the example you want to label:\n");
-	std::map <std::string, float> new_example;
-	while(true){
-		std::string input;
-		std::getline(std::cin, input);
-		if(input.length() == 0) break;
-		int space_loc = input.find(' ');
-		std::string attr_name = input.substr(0, space_loc);
-		float attr_value = std::stof(input.substr(space_loc +1, input.length() - space_loc));
-		new_example[attr_name] = attr_value;
-	}
-     */
-	std::cout<<classify(new_example)<<std::endl;
+int main(){
+    DataManager<float> dm("../chapter2/datasets/Frogs_MFCCs.csv", true);
+    std::cout << "Reading examples from file...\n";
+    std::vector<example<float>*> example_list = dm.getListExamples();
+    std::cout << "Grouping examples...\n";
+    std::map<float, std::vector<example<float>*>> grouped_examples = dm.getGroupedExamples(example_list);
+    size_t examples_num = example_list.size();
+    // Initialize u_max and u_min lists
+    u_max = example_list.at(0)->attributes;
+    u_min = example_list.at(0)->attributes;
+    // Calculate sigmas
+    std::cout << "Calculating parameters...\n";
+    for(int att_index = 0 ; att_index < u_max.size() ; att_index ++){
+        for(example<float>* ex : example_list){
+            if (ex->attributes.at(att_index) > u_max.at(att_index))
+                u_max.at(att_index) = ex->attributes.at(att_index);
+            else if ( ex->attributes.at(att_index) < u_min.at(att_index))
+                u_min.at(att_index) = ex->attributes.at(att_index);
+        }
+        sigmas.push_back((u_max.at(att_index) - u_min.at(att_index))/float(examples_num));
+        //std::cout << sigmas.at(att_index)<< "  ";
+    }
+    std::cout << '\n';
+    sigmas.assign(u_max.size(), 1);
+    // Now classify and see the results
+    std::cout << "classifying...\n";
+    size_t true_positive = 0;
+    for(example<float>* ex: example_list){
+        float result =  classify(ex, examples_num, grouped_examples);
+        if(result == ex->label)
+            true_positive ++;
+    }
+    std::cout << float(true_positive)/float(examples_num);
 	return 0;
 }
